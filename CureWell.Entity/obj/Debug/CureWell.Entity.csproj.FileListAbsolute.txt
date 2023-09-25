@@ -1,0 +1,9 @@
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\obj\Debug\CureWell.Entity.csproj.AssemblyReference.cache
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\obj\Debug\CureWell.Entity.csproj.CoreCompileInputs.cache
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\bin\Debug\CureWell.Entity.dll
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\bin\Debug\CureWell.Entity.pdb
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\obj\Debug\CureWell.Entity.csproj.CopyComplete
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\obj\Debug\CureWell.Entity.dll
+C:\Users\gpv\source\repos\CureWell\CureWell.Entity\obj\Debug\CureWell.Entity.pdb
