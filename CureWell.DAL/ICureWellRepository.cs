@@ -21,5 +21,7 @@ namespace CureWell.DAL
         bool UpdateDoctorDetails(Doctor dObj);
         bool UpdateSurgery(Surgery sObj);
         DoctorDetails GetDoctorDetails(int doctorId);
+        bool AddSpecialization(Specialization sObj);
+        bool AddSurgery(Surgery sObj);
     }
 }

@@ -16,7 +16,7 @@ namespace CureWell.Entity
         public string DoctorName { get; set; }
 
         [JsonProperty("specializations")]
-        public List<string> Specializations;
+        public List<Specialization> Specializations;
 
         [JsonProperty("surgeries")]
         public List<Surgery> Surgeries;
@@ -26,7 +26,7 @@ namespace CureWell.Entity
 
         }
 
-        public DoctorDetails(int doctorId, string doctorName, List<string> specializations, List<Surgery> surgeries)
+        public DoctorDetails(int doctorId, string doctorName, List<Specialization> specializations, List<Surgery> surgeries)
         {
             DoctorId = doctorId;
             DoctorName = doctorName;

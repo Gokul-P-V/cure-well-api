@@ -40,6 +40,45 @@ namespace CureWell.DAL
             return rows > 0;
         }
 
+        public bool AddSpecialization(Specialization sObj)
+        {
+            int rows;
+            SqlCommand cmd = new SqlCommand(connectionString);
+            cmd.Connection = conn;
+            cmd.CommandText = string.Format("insert into Specialization values ('{0}','{1}')", sObj.SpecializationCode, sObj.SpecializationName);
+            conn.Open();
+            try
+            {
+                rows = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+            conn.Close();
+            return rows > 0;
+        }
+
+        public bool AddSurgery(Surgery sObj)
+        {
+            int rows;
+            cmd.Connection = conn;
+            cmd.CommandText = string.Format("insert into Surgery values ({0}, '{1}', {2}, {3}, '{4}');", sObj.DoctorId, sObj.SurgeryDate, sObj.StartTime, sObj.EndTime, sObj.SurgeryCategory);
+            conn.Open();
+            try
+            {
+                rows = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+            conn.Close();
+            return rows > 0;
+        }
+
         public bool DeleteDoctor(int doctorId)
         {
             int rows;
@@ -156,17 +195,18 @@ namespace CureWell.DAL
         public DoctorDetails GetDoctorDetails(int doctorId)
         {
             Doctor doctor = GetDoctorById(doctorId);
-            List<string> specializations = new List<string>();
+            List<Specialization> specializations = new List<Specialization>();
             List<Surgery> surgeries = new List<Surgery>();
 
             cmd.Connection = conn;
-            cmd.CommandText = string.Format("select distinct SpecializationName from Doctor D, Specialization S, DoctorSpecialization DS where D.DoctorId={0} and S.SpecializationCode=DS.SpecializationCode and D.DoctorID=DS.DoctorId", doctorId);
+            cmd.CommandText = string.Format("select S.SpecializationCode, S.SpecializationName from Doctor D, Specialization S, DoctorSpecialization DS where D.DoctorId={0} and S.SpecializationCode=DS.SpecializationCode and D.DoctorID=DS.DoctorId", doctorId);
             conn.Open();
             SqlDataReader reader1 = cmd.ExecuteReader();
             while (reader1.Read())
             {
-                string spec = reader1["SpecializationName"].ToString();
-                specializations.Add(spec);
+                string specializationCode = reader1["SpecializationCode"].ToString();
+                string specializationName = reader1["SpecializationName"].ToString();
+                specializations.Add(new Specialization(specializationCode,specializationName));
             }
             conn.Close();
 
@@ -264,5 +304,6 @@ namespace CureWell.DAL
             conn.Close();
             return rows > 0;
         }
+
     }
 }

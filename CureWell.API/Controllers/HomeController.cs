@@ -203,5 +203,38 @@ namespace CureWell.API.Controllers
                 return Ok(result);
             }
         }
+
+        [HttpPost]
+        [Route("specialization")]
+        public IHttpActionResult AddSpecialization(Specialization dObj)
+        {
+            var response = cureWellRepository.AddSpecialization(dObj);
+            if (response == true)
+            {
+                var result = new { status = true };
+                return Ok(result);
+            }
+            else
+            {
+                var result = new { status = false };
+                return Ok(result);
+            }
+        }
+        [HttpPost]
+        [Route("surgery")]
+        public IHttpActionResult AddSurgery(Surgery sObj)
+        {
+            var response = cureWellRepository.AddSurgery(sObj);
+            if (response == true)
+            {
+                var result = new { status = true };
+                return Ok(result);
+            }
+            else
+            {
+                var result = new { status = false };
+                return Ok(result);
+            }
+        }
     }
 }
