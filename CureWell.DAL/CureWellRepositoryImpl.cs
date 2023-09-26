@@ -153,6 +153,41 @@ namespace CureWell.DAL
             return doctor;
         }
 
+        public DoctorDetails GetDoctorDetails(int doctorId)
+        {
+            Doctor doctor = GetDoctorById(doctorId);
+            List<string> specializations = new List<string>();
+            List<Surgery> surgeries = new List<Surgery>();
+
+            cmd.Connection = conn;
+            cmd.CommandText = string.Format("select distinct SpecializationName from Doctor D, Specialization S, DoctorSpecialization DS where D.DoctorId={0} and S.SpecializationCode=DS.SpecializationCode and D.DoctorID=DS.DoctorId", doctorId);
+            conn.Open();
+            SqlDataReader reader1 = cmd.ExecuteReader();
+            while (reader1.Read())
+            {
+                string spec = reader1["SpecializationName"].ToString();
+                specializations.Add(spec);
+            }
+            conn.Close();
+
+            cmd.CommandText = string.Format("select * from Surgery where DoctorId={0}", doctorId);
+            conn.Open();
+            SqlDataReader reader2 = cmd.ExecuteReader();
+            while (reader2.Read())
+            {
+                int dId = Convert.ToInt32(reader2["DoctorId"]);
+                decimal endTime = Convert.ToDecimal(reader2["EndTime"]);
+                decimal startTime = Convert.ToDecimal(reader2["StartTime"]);
+                string surgeryCategory = reader2["SurgeryCategory"].ToString();
+                DateTime surgeryDate = Convert.ToDateTime(reader2["SurgeryDate"]);
+                int surgeryId = Convert.ToInt32(reader2["SurgeryId"]);
+                surgeries.Add(new Surgery(dId, endTime, startTime, surgeryCategory, surgeryDate, surgeryId));
+            }
+            conn.Close();
+            DoctorDetails doctorDetails = new DoctorDetails(doctorId, doctor.DoctorName, specializations, surgeries);
+            return doctorDetails;
+        }
+
         public List<DoctorSpecialization> GetDoctorsBySpecialization(string specializationCode)
         {
             List<DoctorSpecialization> doctorSpecializationList = new List<DoctorSpecialization>();
@@ -160,7 +195,6 @@ namespace CureWell.DAL
             cmd.CommandText = string.Format("select * from DoctorSpecialization where SpecializationCode='{0}'", specializationCode);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
-
             while (reader.Read())
             {
                 int doctorId = Convert.ToInt32(reader["DoctorId"]);

@@ -20,5 +20,6 @@ namespace CureWell.DAL
         List<DoctorSpecialization> GetDoctorsBySpecialization(string specializationCode);
         bool UpdateDoctorDetails(Doctor dObj);
         bool UpdateSurgery(Surgery sObj);
+        DoctorDetails GetDoctorDetails(int doctorId);
     }
 }

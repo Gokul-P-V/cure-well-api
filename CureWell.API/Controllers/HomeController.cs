@@ -185,5 +185,23 @@ namespace CureWell.API.Controllers
                 return Ok(result);
             }
         }
+
+        [HttpGet]
+        [Route("doctor/{doctorId}/details")]
+        public IHttpActionResult GetDoctorDetails(int doctorId)
+        {
+            var response = cureWellRepository.GetDoctorDetails(doctorId);
+            if (response == null)
+            {
+                var result = new { error = true, message = "No data found" };
+                return Ok(result);
+            }
+
+            else
+            {
+                var result = new { error = false, data = response };
+                return Ok(result);
+            }
+        }
     }
 }
