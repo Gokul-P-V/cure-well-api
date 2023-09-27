@@ -40,6 +40,26 @@ namespace CureWell.DAL
             return rows > 0;
         }
 
+        public bool AddDoctorSpecialization(DoctorSpecialization dsObj)
+        {
+            int rows;
+            SqlCommand cmd = new SqlCommand(connectionString);
+            cmd.Connection = conn;
+            cmd.CommandText = string.Format("insert into DoctorSpecialization values ({0},'{1}','{2}')", dsObj.DoctorId, dsObj.SpecializationCode, dsObj.SpecializationDate);
+            conn.Open();
+            try
+            {
+                rows = cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+            conn.Close();
+            return rows > 0;
+        }
+
         public bool AddSpecialization(Specialization sObj)
         {
             int rows;

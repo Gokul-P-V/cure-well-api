@@ -236,5 +236,22 @@ namespace CureWell.API.Controllers
                 return Ok(result);
             }
         }
+
+        [HttpPost]
+        [Route("doctorspecialization")]
+        public IHttpActionResult AddDoctorSpecialization(DoctorSpecialization dsObj)
+        {
+            var response = cureWellRepository.AddDoctorSpecialization(dsObj);
+            if (response == true)
+            {
+                var result = new { status = true };
+                return Ok(result);
+            }
+            else
+            {
+                var result = new { status = false };
+                return Ok(result);
+            }
+        }
     }
 }
