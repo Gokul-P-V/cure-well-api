@@ -45,7 +45,7 @@ namespace CureWell.DAL
             int rows;
             SqlCommand cmd = new SqlCommand(connectionString);
             cmd.Connection = conn;
-            cmd.CommandText = string.Format("insert into DoctorSpecialization values ({0},'{1}','{2}')", dsObj.DoctorId, dsObj.SpecializationCode, dsObj.SpecializationDate);
+            cmd.CommandText = string.Format("insert into DoctorSpecialization values ({0},'{1}','{2}')", dsObj.DoctorId, dsObj.SpecializationCode, dsObj.SpecializationDate.ToString("yyyy-MM-dd"));
             conn.Open();
             try
             {
@@ -84,7 +84,7 @@ namespace CureWell.DAL
         {
             int rows;
             cmd.Connection = conn;
-            cmd.CommandText = string.Format("insert into Surgery values ({0}, '{1}', {2}, {3}, '{4}');", sObj.DoctorId, sObj.SurgeryDate, sObj.StartTime, sObj.EndTime, sObj.SurgeryCategory);
+            cmd.CommandText = string.Format("insert into Surgery values ({0}, '{1}', {2}, {3}, '{4}');", sObj.DoctorId, sObj.SurgeryDate.ToString("yyyy-MM-dd"), sObj.StartTime, sObj.EndTime, sObj.SurgeryCategory);
             conn.Open();
             try
             {
@@ -310,7 +310,7 @@ namespace CureWell.DAL
         {
             int rows;
             cmd.Connection = conn;
-            cmd.CommandText = string.Format("update Surgery set DoctorId={0}, StartTime={1}, EndTime={2}, SurgeryDate='{3}', SurgeryCategory='{4}' where SurgeryId={5}", sObj.DoctorId, sObj.StartTime, sObj.EndTime, sObj.SurgeryDate, sObj.SurgeryCategory, sObj.SurgeryId);
+            cmd.CommandText = string.Format("update Surgery set DoctorId={0}, StartTime={1}, EndTime={2}, SurgeryDate='{3}', SurgeryCategory='{4}' where SurgeryId={5}", sObj.DoctorId, sObj.StartTime, sObj.EndTime, sObj.SurgeryDate.ToString("yyyy-MM-dd"), sObj.SurgeryCategory, sObj.SurgeryId);
             conn.Open();
             try
             {

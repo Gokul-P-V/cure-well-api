@@ -12,7 +12,7 @@ using System.Web.Routing;
 
 namespace CureWell.API.Controllers
 {
-    [RoutePrefix("api")]
+    [RoutePrefix("CureWell")]
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class HomeController : ApiController
     {
