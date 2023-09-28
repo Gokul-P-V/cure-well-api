@@ -287,6 +287,24 @@ namespace CureWell.DAL
             return surgery;
         }
 
+        public User Login(User uObj)
+        {
+            User user = null;
+            cmd.Connection = conn;
+            cmd.CommandText = string.Format("select * from Users where Email='{0}' and Password='{1}'", uObj.Email,uObj.Password);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                int userId = Convert.ToInt32(reader["UserId"]);
+                string email = reader["Email"].ToString();
+                string password = reader["Password"].ToString();
+                user = new User(userId, email, password);
+            }
+            conn.Close();
+            return user;
+        }
+
         public bool UpdateDoctorDetails(Doctor dObj)
         {
             int rows;

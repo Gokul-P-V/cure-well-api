@@ -14,10 +14,12 @@ namespace CureWell.Entity
 
         [JsonProperty("doctorName")]
         public string DoctorName { get; set; }
+
         public Doctor()
         {
 
         }
+
         public Doctor(int doctorId, string doctorName)
         {
             DoctorId = doctorId;

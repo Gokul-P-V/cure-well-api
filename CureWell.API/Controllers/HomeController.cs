@@ -253,5 +253,23 @@ namespace CureWell.API.Controllers
                 return Ok(result);
             }
         }
+
+        [HttpPost]
+        [Route("login")]
+        public IHttpActionResult Login(User uObj)
+        {
+            var response = cureWellRepository.Login(uObj);
+            if (response == null)
+            {
+                var result = new { error = true, message = "No data found" };
+                return Ok(result);
+            }
+
+            else
+            {
+                var result = new { error = false, data = response };
+                return Ok(result);
+            }
+        }
     }
 }

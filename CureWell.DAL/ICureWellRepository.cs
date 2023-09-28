@@ -1,4 +1,5 @@
 ﻿using CureWell.Entity;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,6 @@ namespace CureWell.DAL
         bool AddSpecialization(Specialization sObj);
         bool AddSurgery(Surgery sObj);
         bool AddDoctorSpecialization(DoctorSpecialization dsObj);
+        User Login(User uObj);
     }
 }
