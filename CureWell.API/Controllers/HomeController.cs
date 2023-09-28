@@ -16,12 +16,6 @@ namespace CureWell.API.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class HomeController : ApiController
     {
-        //private ICureWellRepository cureWellRepository;
-
-        //public HomeController(ICureWellRepository cureWellRepository)
-        //{
-        //    this.cureWellRepository = cureWellRepository;
-        //}
         private ICureWellRepository cureWellRepository;
         public HomeController()
         {
